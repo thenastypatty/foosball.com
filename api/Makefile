@@ -6,7 +6,7 @@ GOARCH ?= amd64
 export GO111MODULE=on
 
 .PHONY: all
-all: test fmt lint build
+all: fmt lint test build
 
 .PHONY: build
 build: 
