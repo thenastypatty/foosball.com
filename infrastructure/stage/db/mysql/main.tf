@@ -9,23 +9,23 @@ terraform {
   }
 }
 
+#TODO: Change VPC
 data "aws_vpc" "default" {
   default = true
 }
-
+#TODO: Change Subnet
 data "aws_subnet_ids" "all" {
   vpc_id = "${data.aws_vpc.default.id}"
 }
-
+#TODO: Change Security Group
 data "aws_security_group" "default" {
   vpc_id = "${data.aws_vpc.default.id}"
   name   = "default"
 }
 
-
 module "db" {
   source = "terraform-aws-modules/rds/aws"
-  identifier = "demodb"
+  identifier = "${var.db_identifier}"
   engine = "mysql"
   engine_version = "5.7.19"
   family = "mysql5.7"
