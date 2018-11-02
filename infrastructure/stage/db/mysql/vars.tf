@@ -7,7 +7,7 @@ variable "aws_instance_class" {
     description = "AWS instance class"
 }
 variable "db_identifier" {
-    default = "foosball.com"
+    default = "foosball-com"
     description = "Default AWS Console identifier for database (instead of randomly generated)"
 }
 variable "db_name" {

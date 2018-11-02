@@ -23,13 +23,12 @@ data "aws_security_group" "default" {
   name   = "default"
 }
 
+#TODO: Decide which engine version to use
 module "db" {
   source = "terraform-aws-modules/rds/aws"
   identifier = "${var.db_identifier}"
   engine = "mysql"
   engine_version = "5.7.19"
-  family = "mysql5.7"
-  major_engine_version = "5.7"
   instance_class = "${var.aws_instance_class}"
   allocated_storage = "${var.allocated_storage}"
   storage_encrypted = false
