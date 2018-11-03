@@ -3,8 +3,8 @@ provider "aws" {
 }
 terraform {
   backend "s3" {
-    bucket = "foosballhq-nonprod"
-    key    = "staging/db/postgres/foosballhq_nonprod.tfstate"
+    bucket = "foosballhq-staging"
+    key    = "db/postgres/foosballhq.tfstate"
     region = "us-east-1"
   }
 }
@@ -34,7 +34,6 @@ module "db" {
   storage_encrypted = false
   maintenance_window = "Mon:00:00-Mon:03:00"
   backup_window      = "03:00-06:00"
-
   name = "${var.db_name}"
   username = "${var.db_admin_username}"
   password = "${var.db_admin_password}!"
@@ -45,9 +44,11 @@ module "db" {
   tags = {
     Environment = "staging"
   }
-  enabled_cloudwatch_logs_exports = ["error", "general"]
   subnet_ids = ["${data.aws_subnet_ids.all.ids}"]
   final_snapshot_identifier = "${var.final_snapshot_identifier}"
   deletion_protection = true
   options = []
+
+  #DB Parameter group 
+  family = "postgres10"
 }
