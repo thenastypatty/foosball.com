@@ -4,7 +4,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket = "foosballhq-nonprod"
-    key    = "staging/db/mysql/foosballhq_nonprod.tfstate"
+    key    = "staging/db/postgres/foosballhq_nonprod.tfstate"
     region = "us-east-1"
   }
 }
@@ -27,8 +27,8 @@ data "aws_security_group" "default" {
 module "db" {
   source = "terraform-aws-modules/rds/aws"
   identifier = "${var.db_identifier}"
-  engine = "mysql"
-  engine_version = "5.7.19"
+  engine = "postgres"
+  engine_version = "10.5"
   instance_class = "${var.aws_instance_class}"
   allocated_storage = "${var.allocated_storage}"
   storage_encrypted = false
@@ -41,7 +41,7 @@ module "db" {
   port = "${var.db_connection_port}"
 
   vpc_security_group_ids = ["${data.aws_security_group.default.id}"]
-  backup_retention_period = 1
+  backup_retention_period = 2
   tags = {
     Environment = "staging"
   }
