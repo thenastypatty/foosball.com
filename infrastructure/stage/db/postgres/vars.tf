@@ -1,5 +1,5 @@
 variable "allocated_storage" {
-    default = 10
+    default = 20
     description = "How many gigabites of memory to give RDS instance"
 }
 variable "aws_instance_class" {
