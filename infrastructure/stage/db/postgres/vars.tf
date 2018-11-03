@@ -15,7 +15,7 @@ variable "db_name" {
     description = "Default name of database"
 }
 variable "db_admin_username" {
-    default = "admin"
+    default = "foosballadmin"
     description = "DB admin username"
 }
 variable "db_connection_port" {
