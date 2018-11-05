@@ -1,5 +1,5 @@
 CREATE TABLE posts (
   id SERIAL PRIMARY KEY,
-  table_id INTEGER REFERENCES tables(id),
+  user_id INTEGER REFERENCES users(id),
   description TEXT
 );
